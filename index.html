@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Audio Visualizer</title>
+    <style>
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background-color: rgb(26, 35, 126);
+            color: rgb(255, 255, 255);
+        }
+
+        #VisualizerCanvas {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+    </style>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="AudioVisualizer.js"></script>
+    <script type="text/javascript">
+        $(document).on('ready', function () {
+            var VisualizerCanvas = $('#VisualizerCanvas', document);
+            VisualizerCanvas[0].width = window.innerWidth;
+            VisualizerCanvas[0].height = window.innerHeight;
+            VisualizerCanvas.AudioVisualizer({
+                MusicURL: 'We Rise.mp3',
+                VisualizerType: AudioVisualizerTypes.Flower,
+                VisualizerDrawMode: AudioVisualizerDrawMode.Fill
+            }).LoadMusic(function (audioVisualizerObject) {
+                var SourceID = audioVisualizerObject.Start();
+                audioVisualizerObject.StartVisualizer();
+            });
+        });
+    </script>
+</head>
+<body>
+<canvas id="VisualizerCanvas"></canvas>
+</body>
+</html>
